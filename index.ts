@@ -1,4 +1,7 @@
-async function getAvailableDates(year, month) {
+async function getAvailableDates(
+  year: number,
+  month: number
+): Promise<string[]> {
   // Format the start date to the first day of the specified month
   const startDate = `${year}-${String(month).padStart(2, "0")}-01`;
 
@@ -79,8 +82,8 @@ async function getAvailableDates(year, month) {
 
     if (data.data.availabilityCalendar.days) {
       const availableDays = data.data.availabilityCalendar.days
-        .filter((day) => day.available)
-        .map((day) => day.checkin)
+        .filter((day: any) => day.available)
+        .map((day: any) => day.checkin)
         .sort(); // Sort dates chronologically
       return availableDays;
     } else {
@@ -93,6 +96,32 @@ async function getAvailableDates(year, month) {
   }
 }
 
-getAvailableDates(2026, 6).then((availableDates) => {
-  console.log("Available check-in dates:", availableDates);
+async function main() {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11
+
+  console.log(
+    `Checking availability for ${currentYear}-${String(currentMonth).padStart(
+      2,
+      "0"
+    )}`
+  );
+
+  const availableDates = await getAvailableDates(currentYear, currentMonth);
+
+  if (availableDates.length > 0) {
+    console.log("✅ Available check-in dates found:", availableDates);
+    console.log(`Found ${availableDates.length} available dates`);
+  } else {
+    console.log("❌ No available dates found");
+  }
+
+  return availableDates;
+}
+
+// Run the main function
+main().catch((error) => {
+  console.error("Error:", error);
+  process.exit(1);
 });
