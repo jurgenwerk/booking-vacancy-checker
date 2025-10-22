@@ -2,8 +2,8 @@ const { execSync } = require("child_process");
 
 async function checkAvailability() {
   try {
-    // Run the script and capture output
-    const output = execSync("npm start", { encoding: "utf8" });
+      // Run the script and capture output
+      const output = execSync("node dist/index.js", { encoding: "utf8" });
     console.log("Script output:", output);
 
     // Extract available dates from output

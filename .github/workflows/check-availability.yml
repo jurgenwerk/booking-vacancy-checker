@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Run availability check
-        run: npm start
+        run: node dist/index.js
 
       - name: Check for changes and create issue
         if: success()
