@@ -98,28 +98,28 @@ async function getAvailableDates(
 
 async function main() {
   console.log("Checking availability for June 2026 to September 2026");
-  
+
   // Check June, July, August, September 2026
   const monthsToCheck = [6, 7, 8, 9]; // June to September
   const year = 2026;
-  let allAvailableDates = [];
-  
+  let allAvailableDates: string[] = [];
+
   for (const month of monthsToCheck) {
     console.log(`Checking ${year}-${String(month).padStart(2, "0")}`);
     const monthDates = await getAvailableDates(year, month);
     allAvailableDates = allAvailableDates.concat(monthDates);
   }
-  
+
   // Remove duplicates and sort
   const uniqueDates = [...new Set(allAvailableDates)].sort();
-  
+
   if (uniqueDates.length > 0) {
     console.log("✅ Available check-in dates found:", uniqueDates);
     console.log(`Found ${uniqueDates.length} available dates`);
   } else {
     console.log("❌ No available dates found");
   }
-  
+
   return uniqueDates;
 }
 
