@@ -2,8 +2,8 @@ name: Check Booking Availability
 
 on:
   schedule:
-    # Run every hour
-    - cron: "0 * * * *"
+    # Run every 5 minutes for testing
+    - cron: "*/5 * * * *"
   workflow_dispatch: # Allow manual triggering
 
 jobs:
