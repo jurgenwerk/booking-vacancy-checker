@@ -1,6 +1,6 @@
 const { execSync } = require("child_process");
 
-async function checkAvailability() {
+async function checkAvailability(github, context) {
   try {
       // Run the script and capture output
       const output = execSync("node dist/index.js", { encoding: "utf8" });

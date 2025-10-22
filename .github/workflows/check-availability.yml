@@ -35,7 +35,7 @@ jobs:
         with:
           script: |
             const checkAvailability = require('./check-availability.js');
-            await checkAvailability();
+            await checkAvailability(github, context);
 
     # Optional: Discord notification (uncomment and add DISCORD_WEBHOOK secret)
     # - name: Notify Discord
