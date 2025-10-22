@@ -40,13 +40,13 @@ async function checkAvailability(github, context) {
     const latestIssue = issues.data.find(
       (issue) =>
         issue.title.includes("VIB Vacation Home") &&
-        issue.body.includes("Available dates:")
+        issue.body.includes("**Available dates:**")
     );
 
     if (latestIssue) {
       // Extract dates from the latest issue
       const bodyMatch = latestIssue.body.match(
-        /Available dates: (.*?)(?:\n|$)/
+        /\*\*Available dates:\*\* (.*?)(?:\n|$)/
       );
       if (bodyMatch) {
         previousDates = bodyMatch[1]
