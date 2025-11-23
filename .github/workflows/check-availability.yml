@@ -40,12 +40,3 @@ jobs:
           script: |
             const checkAvailability = require('./check-availability.js');
             await checkAvailability(github, context);
-
-    # Optional: Discord notification (uncomment and add DISCORD_WEBHOOK secret)
-    # - name: Notify Discord
-    #   if: success()
-    #   uses: Ilshidur/action-discord@master
-    #   env:
-    #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-    #   with:
-    #     args: '🏠 VIB Vacation Home availability check completed!'
